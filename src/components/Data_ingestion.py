@@ -12,16 +12,18 @@ class DataIngestion:
         self.config = config
 
     def download_file(self):
-        if (not os.path.exists(self.config.local_data_file)):
-
-            filename,header = request.urlretrieve(
-                filename=self.config.local_data_file,
+        filepath = self.config.local_data_file  # Ensure filepath is defined
+        
+        if not os.path.exists(filepath):
+            filepath, header = request.urlretrieve(
+                filename=filepath,
                 url=self.config.source_URL
             )
-            logging.info(f"File {filename} Successfully download with information {header}")
-
+            
+            logging.info(f"File {filepath} successfully downloaded with information {header}")
         else:
-            logging.info(f"File {filename} already exists with size {os.path.getsize(filename=filename)}")
+            logging.info(f"File {filepath} already exists with size {os.path.getsize(filepath)}")
+
 
     def extract_zip_file(self):
 
