@@ -1,4 +1,4 @@
-from src.entity.config_entity import DataIngestionConfig,DataValidationConfig,DataTransformationConfig
+from src.entity.config_entity import DataIngestionConfig,DataValidationConfig,DataTransformationConfig,ModelTrainingConfig
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
 
@@ -55,3 +55,26 @@ class ConfigurationManager:
         )
 
         return data_transformation_config
+    
+    def get_model_trainer_config(self)->ModelTrainingConfig:
+
+        config = self.config.model_trainer
+        params = self.params.TrainingArguments
+
+        create_directories([config.root_dir])
+
+        model_traier_config = ModelTrainingConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            model_ckpt=config.model_ckpt,
+            num_train_epoch=params.num_train_epoch,
+            warmp_steps=params.warmp_steps,
+            per_device_train_batch_size=params.per_device_train_batch_size,
+            weight_decay=params.weight_decay,
+            logging_steps=params.logging_steps,
+            evaluation_strategy=params.evaluation_strategy,
+            eval_steps=params.eval_steps,
+            save_steps=params.save_steps,
+            gradient_accumulation_steps=params.gradient_accumulation_steps)
+
+        return model_traier_config
