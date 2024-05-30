@@ -10,8 +10,6 @@ Requires-Dist: datasets
 Requires-Dist: sacrebleu
 Requires-Dist: rouge_score
 Requires-Dist: py7zr
-Requires-Dist: pandas
-Requires-Dist: nltk
 Requires-Dist: tqdm
 Requires-Dist: PyYAML
 Requires-Dist: matplotlib

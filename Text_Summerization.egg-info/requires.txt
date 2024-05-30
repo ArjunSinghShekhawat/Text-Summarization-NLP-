@@ -4,8 +4,6 @@ datasets
 sacrebleu
 rouge_score
 py7zr
-pandas
-nltk
 tqdm
 PyYAML
 matplotlib
